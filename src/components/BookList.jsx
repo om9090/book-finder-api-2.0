@@ -9,11 +9,7 @@ const BookList = ({ books }) => {
         display: "flex",
         justifyContent: "center",
         flexWrap: "wrap",
-        "& > :not(style)": {
-          m: 1,
-          width: 128,
-          height: 128,
-        },
+        gap: "1rem",
       }}
     >
       {books.map((book, index) => (

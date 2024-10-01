@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { TextField, Select, MenuItem, Button, Box } from "@mui/material";
 import { languages } from "../constants/languages";
 
 const BookSearch = ({ onSearch, searchParams }) => {
@@ -19,33 +20,44 @@ const BookSearch = ({ onSearch, searchParams }) => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
+    <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
+      <TextField
+        label="Search for books"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        placeholder="Search for books"
+        variant="outlined"
       />
-      <select
+      <Select
         value={searchType}
         onChange={(e) => setSearchType(e.target.value)}
+        variant="outlined"
       >
-        <option value="title">Title</option>
-        <option value="author">Author</option>
-      </select>
-      <select value={language} onChange={(e) => setLanguage(e.target.value)}>
+        <MenuItem value="title">Title</MenuItem>
+        <MenuItem value="author">Author</MenuItem>
+      </Select>
+      <Select
+        value={language}
+        onChange={(e) => setLanguage(e.target.value)}
+        variant="outlined"
+      >
         {languages.map((language) => (
-          <option key={language.lang} value={language.lang}>
+          <MenuItem key={language.lang} value={language.lang}>
             {language.name}
-          </option>
+          </MenuItem>
         ))}
-      </select>
-      <select value={sortType} onChange={(e) => setSortType(e.target.value)}>
-        <option value="title">Sort by Title</option>
-        <option value="author">Sort by Author</option>
-      </select>
-      <button onClick={handleSearch}>Search</button>
-    </div>
+      </Select>
+      <Select
+        value={sortType}
+        onChange={(e) => setSortType(e.target.value)}
+        variant="outlined"
+      >
+        <MenuItem value="title">Sort by Title</MenuItem>
+        <MenuItem value="author">Sort by Author</MenuItem>
+      </Select>
+      <Button variant="contained" onClick={handleSearch}>
+        Search
+      </Button>
+    </Box>
   );
 };
 

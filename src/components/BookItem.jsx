@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import BookItemBack from "./BookItemBack";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 export default function BookItem({ book }) {
   const { title, authors, imageLinks, canonicalVolumeLink } = book.volumeInfo;
@@ -34,8 +35,13 @@ export default function BookItem({ book }) {
           sx={{
             height: "2rem",
             padding: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-        ></CardActions>
+        >
+          <MoreHorizIcon sx={{ height: "2em", width: "2em" }} />
+        </CardActions>
       </Card>
       <BookItemBack
         title={title}

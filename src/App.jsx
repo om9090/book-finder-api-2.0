@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BookSearch from "./components/BookSearch";
 import BookList from "./components/BookList";
+import Header from "./components/Header";
 import useFetchBooks from "./hooks/useFetchBooks";
 import "./App.css";
 
@@ -53,6 +54,7 @@ const App = () => {
 
   return (
     <div>
+      <Header />
       <BookSearch onSearch={handleSearch} searchParams={searchParams} />
       <button onClick={handleClear}>Clear</button>
       {loading && <p>Loading...</p>}

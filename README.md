@@ -1,6 +1,6 @@
-# BookFinder
+# Book Finder 2.0
 
-BookFinder is a simple web application that allows users to search for books using the Google Books API. This project was originally [a school assignment](https://livoszlak.github.io/book-finder-api/) I worked on during my first year of web development studies, when I was just starting to learn about APIs, but I thought it would be fun to refactor what I had into utilizing a framework and some nicer styling. This 2.0 version is built with React and Vite.
+**Book Finder 2.0** is a simple web application that allows users to search for books using the Google Books API. This project was originally [a school assignment](https://livoszlak.github.io/book-finder-api/) I worked on during my first year of web development studies, when I was just starting to learn about APIs, but I thought it would be fun to refactor what I had into utilizing a framework and some nicer styling. The previous version was basically one vanilla JS script file, one vanilla CSS file and one HTML index file. This 2.0 version is built with React and Vite.
 
 ## Dependencies
 
@@ -17,7 +17,7 @@ BookFinder is a simple web application that allows users to search for books usi
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/yourusername/bookfinder.git
+   git clone https://github.com/livoszlak/book-finder-api-2.0.git
    cd bookfinder
    ```
 
@@ -40,13 +40,9 @@ BookFinder is a simple web application that allows users to search for books usi
    npm run dev
    ```
 
-## Usage
-
-Open your browser and navigate to `http://localhost:3000` to see the application in action.
-
 ## Contributing
 
-We welcome contributions! Please see the [Contributing Guide](CONTRIBUTING.md) for more details.
+Contributions are welcome! Please see the [Contributing Guide](CONTRIBUTING.md) for more details.
 
 ## License
 

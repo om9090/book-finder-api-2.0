@@ -1,6 +1,6 @@
-# Contributing to BookFinder
+# Contributing to Book Finder 2.0
 
-Thank you for considering contributing to BookFinder! We welcome all contributions, big or small.
+Thank you for considering contributing to BookFinder! We welcome all contributions, big or small. If you have ideas for improvements beyond the issues already listed, feel free to suggest them.
 
 ## How to Contribute
 
@@ -8,11 +8,11 @@ Thank you for considering contributing to BookFinder! We welcome all contributio
 2. Clone your fork:
 
    ```sh
-   git clone https://github.com/yourusername/bookfinder.git
+   git clone https://github.com/livoszlak/book-finder-api-2.0.git
    cd bookfinder
    ```
 
-3. Create a new branch for your feature or bugfix:
+3. Create a new branch for your feature or bugfix (preferably named after the issue you're working on, for example **66-add-header**):
 
    ```sh
    git checkout -b my-feature-branch

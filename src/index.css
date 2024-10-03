@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #2e4057;
+  background-color: #8398b4;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -46,12 +46,38 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.btn-search {
+  width: fit-content;
+}
+
+.search-wrapper {
+  max-width: 850px;
+}
+
+.search-input-wrapper {
+  width: 100%;
+}
+
+.search-options-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.search {
+  width: 100%;
 }
 
 header {

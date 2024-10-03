@@ -18,15 +18,6 @@ const App = () => {
     setSearchParams({ searchValue, searchType, language, sortType });
   };
 
-  const handleClear = () => {
-    setSearchParams({
-      searchValue: "",
-      searchType: "title",
-      language: "en",
-      sortType: "title",
-    });
-  };
-
   const sortBooks = (books, sortType) => {
     if (sortType === "title") {
       return books.sort((a, b) => {
@@ -56,7 +47,6 @@ const App = () => {
     <div>
       <Header />
       <BookSearch onSearch={handleSearch} searchParams={searchParams} />
-      <button onClick={handleClear}>Clear</button>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       <BookList books={sortedBooks} />

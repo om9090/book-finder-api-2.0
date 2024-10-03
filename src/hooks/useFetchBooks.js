@@ -26,6 +26,7 @@ const useFetchBooks = (searchParams) => {
           `${baseUrl}?q=${queryParam}&maxResults=40&langRestrict=${searchParams.language}&printType=books&fields=items(volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks,volumeInfo/canonicalVolumeLink)&key=${key}`
         );
         const data = await response.json();
+        console.log(searchParams);
 
         // Checking for unnecessary duplicates in results
         const uniqueBooks = [];

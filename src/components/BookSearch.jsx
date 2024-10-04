@@ -8,7 +8,9 @@ const BookSearch = ({ onSearch, searchParams }) => {
   const [searchValue, setSearchValue] = useState(searchParams.searchValue);
   const [searchType, setSearchType] = useState(searchParams.searchType);
   const [language, setLanguage] = useState(searchParams.language);
-  const [sortType, setSortType] = useState(searchParams.sortType);
+  const [sortType, setSortType] = useState(
+    searchParams.sortType || "relevance"
+  );
 
   useEffect(() => {
     setSearchValue(searchParams.searchValue);
@@ -25,54 +27,51 @@ const BookSearch = ({ onSearch, searchParams }) => {
     setSearchValue("");
     setSearchType("title");
     setLanguage("en");
-    setSortType("title");
-    onSearch("", "title", "en", "title");
+    setSortType("relevance");
+    onSearch("", "title", "en", "relevance");
   };
 
   return (
     <Box
-      className="search-wrapper"
+      className="full-search-wrapper"
       sx={{
         display: "flex",
         flexDirection: "column",
         gap: 2,
         alignItems: "center",
-        justifyContent: "center",
         marginBottom: 2,
       }}
     >
-      <Box className="search-input-wrapper">
-        <TextField
-          className="search"
-          label="Search for books"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          variant="outlined"
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Search />
-                </InputAdornment>
-              ),
-            },
-          }}
-        />
-      </Box>
-
-      <Box className="search-options-wrapper">
+      <TextField
+        label="Search for books"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        variant="outlined"
+        fullWidth
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <Search />
+            </InputAdornment>
+          ),
+        }}
+      />
+      <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
         <Select
           value={searchType}
           onChange={(e) => setSearchType(e.target.value)}
           variant="outlined"
+          fullWidth
         >
           <MenuItem value="title">Title</MenuItem>
           <MenuItem value="author">Author</MenuItem>
+          <MenuItem value="subject">Subject</MenuItem>
         </Select>
         <Select
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
           variant="outlined"
+          fullWidth
         >
           {languages.map((language) => (
             <MenuItem key={language.lang} value={language.lang}>
@@ -84,27 +83,17 @@ const BookSearch = ({ onSearch, searchParams }) => {
           value={sortType}
           onChange={(e) => setSortType(e.target.value)}
           variant="outlined"
+          fullWidth
         >
-          <MenuItem value="title">Sort by Title</MenuItem>
-          <MenuItem value="author">Sort by Author</MenuItem>
+          <MenuItem value="relevance">Relevance</MenuItem>
+          <MenuItem value="newest">Newest</MenuItem>
         </Select>
       </Box>
-      <Box
-        className="search-buttons-wrapper"
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 2,
-        }}
-      >
-        <Button
-          className="btn-search"
-          variant="contained"
-          onClick={handleSearch}
-        >
+      <Box sx={{ display: "flex", gap: 2 }}>
+        <Button variant="contained" onClick={handleSearch}>
           Search
         </Button>
-        <Button className="btn-clear" variant="contained" onClick={handleClear}>
+        <Button variant="outlined" onClick={handleClear}>
           Clear
         </Button>
       </Box>

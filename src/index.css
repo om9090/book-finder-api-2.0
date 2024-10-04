@@ -60,6 +60,11 @@ button:focus-visible {
   width: fit-content;
 }
 
+.full-search-wrapper {
+  margin: 0 auto;
+  max-width: 850px;
+}
+
 .search-wrapper {
   max-width: 850px;
 }

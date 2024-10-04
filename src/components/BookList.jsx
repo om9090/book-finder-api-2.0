@@ -1,7 +1,15 @@
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import BookItem from "./BookItem";
+import Paginate from "./Paginate";
 
 const BookList = ({ books }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const booksPerPage = 10;
+  const indexOfLastBook = currentPage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <Box
       className="data-wrapper"
@@ -12,9 +20,14 @@ const BookList = ({ books }) => {
         gap: "1rem",
       }}
     >
-      {books.map((book, index) => (
+      {currentBooks.map((book, index) => (
         <BookItem key={book.id || index} book={book} />
       ))}
+      <Paginate
+        booksPerPage={booksPerPage}
+        totalBooks={books.length}
+        paginate={paginate}
+      />
     </Box>
   );
 };

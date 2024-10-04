@@ -10,7 +10,7 @@ const App = () => {
     searchValue: "",
     searchType: "title",
     language: "en",
-    sortType: "title",
+    sortType: "relevance",
   });
   const { books, loading, error } = useFetchBooks(searchParams);
 
@@ -18,38 +18,13 @@ const App = () => {
     setSearchParams({ searchValue, searchType, language, sortType });
   };
 
-  const sortBooks = (books, sortType) => {
-    if (sortType === "title") {
-      return books.sort((a, b) => {
-        const titleA = a.volumeInfo?.title?.toLowerCase();
-        const titleB = b.volumeInfo?.title?.toLowerCase();
-        if (titleA < titleB) return -1;
-        if (titleA > titleB) return 1;
-        return 0;
-      });
-    } else if (sortType === "author") {
-      return books.sort((a, b) => {
-        const authorA = a.volumeInfo?.authors?.[0]?.toLowerCase().split(" ");
-        const authorB = b.volumeInfo?.authors?.[0]?.toLowerCase().split(" ");
-        if (authorA[0] < authorB[0]) return -1;
-        if (authorA[0] > authorB[0]) return 1;
-        if (authorA[1] < authorB[1]) return -1;
-        if (authorA[1] > authorB[1]) return 1;
-        return 0;
-      });
-    }
-    return books;
-  };
-
-  const sortedBooks = sortBooks(books, searchParams.sortType);
-
   return (
     <div>
       <Header />
       <BookSearch onSearch={handleSearch} searchParams={searchParams} />
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-      <BookList books={sortedBooks} />
+      <BookList books={books} />
     </div>
   );
 };

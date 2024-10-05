@@ -4,6 +4,7 @@ const useFetchBooks = (searchParams) => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (!searchParams.searchValue) {
@@ -14,6 +15,7 @@ const useFetchBooks = (searchParams) => {
     const fetchData = async () => {
       setLoading(true);
       setError(null);
+      setSuccess(false);
       const baseUrl = "https://www.googleapis.com/books/v1/volumes";
       const key = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
 
@@ -57,6 +59,7 @@ const useFetchBooks = (searchParams) => {
         }
 
         setBooks(uniqueBooks);
+        setSuccess(true);
       } catch (err) {
         setError(err);
       } finally {
@@ -67,7 +70,7 @@ const useFetchBooks = (searchParams) => {
     fetchData();
   }, [searchParams]);
 
-  return { books, loading, error };
+  return { books, loading, error, success };
 };
 
 export default useFetchBooks;

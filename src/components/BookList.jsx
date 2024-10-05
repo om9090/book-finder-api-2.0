@@ -11,24 +11,32 @@ const BookList = ({ books }) => {
   const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
-    <Box
-      className="data-wrapper"
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        gap: "1rem",
-      }}
-    >
-      {currentBooks.map((book, index) => (
-        <BookItem key={book.id || index} book={book} />
-      ))}
-      <Paginate
-        booksPerPage={booksPerPage}
-        totalBooks={books.length}
-        paginate={paginate}
-      />
-    </Box>
+    <>
+      <Box
+        className="data-wrapper"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: "1rem",
+          marginBottom: "2rem",
+        }}
+      >
+        {currentBooks.map((book, index) => (
+          <BookItem key={book.id || index} book={book} />
+        ))}
+      </Box>
+      <Box
+        className="pagination-wrapper"
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
+        <Paginate
+          booksPerPage={booksPerPage}
+          totalBooks={books.length}
+          paginate={paginate}
+        />
+      </Box>
+    </>
   );
 };
 

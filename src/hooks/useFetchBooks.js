@@ -21,8 +21,16 @@ const useFetchBooks = (searchParams) => {
       if (searchParams.searchType === "title") {
         queryParam = `intitle:"${searchParams.searchValue}"`;
       } else if (searchParams.searchType === "author") {
-        const authorParts = searchParams.searchValue.split(/\s+/);
-        queryParam = authorParts.map((part) => `inauthor:"${part}"`).join("+");
+        // Normalize the search value
+        const normalizedSearchValue = searchParams.searchValue
+          .replace(/\./g, "")
+          .replace(/\s+/g, " ")
+          .trim();
+        const authorParts = normalizedSearchValue.split(" ");
+        const authorQuery = authorParts.join(" ");
+        queryParam = `inauthor:"${authorQuery}" OR inauthor:"${normalizedSearchValue}" OR inauthor:"${authorParts.join(
+          ". "
+        )}" OR inauthor:"${authorParts.join(".")}"`;
       } else if (searchParams.searchType === "subject") {
         queryParam = `subject:"${searchParams.searchValue}"`;
       }

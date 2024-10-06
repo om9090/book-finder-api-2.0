@@ -3,7 +3,7 @@ import BookSearch from "./components/BookSearch";
 import BookList from "./components/BookList";
 import Header from "./components/Header";
 import useFetchBooks from "./hooks/useFetchBooks";
-import CenterdSpinner from "./components/CenteredSpinner";
+import CenteredSpinner from "./components/CenteredSpinner";
 import "./App.css";
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
     <div>
       <Header />
       <BookSearch onSearch={handleSearch} searchParams={searchParams} />
-      {loading && <CenterdSpinner />}
+      {loading && <CenteredSpinner />}
       {error && <p>Error: {error.message}</p>}
       {success && <BookList books={books} />}
     </div>

@@ -14,7 +14,7 @@ const useFetchBooks = (searchParams) => {
 
     const fetchData = async () => {
       setLoading(true);
-      setError(null);  // Clear error before starting new request
+      setError(null); // Clear error before starting new request
       setSuccess(false);
       const baseUrl = "https://www.googleapis.com/books/v1/volumes";
       const key = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
@@ -41,19 +41,23 @@ const useFetchBooks = (searchParams) => {
       const fetchUrl = `${baseUrl}?q=${queryParam}&maxResults=40&langRestrict=${searchParams.language}&printType=books&orderBy=${apiSortType}&fields=items(id,volumeInfo(title,authors,description,imageLinks,canonicalVolumeLink,categories,publishedDate,publisher,pageCount,averageRating))&key=${key}`;
 
       try {
-        const controller = new AbortController();  // Create an abort controller to manage timeouts
-        const timeoutId = setTimeout(() => controller.abort(), 10000);  // 10 second timeout
+        const controller = new AbortController(); // Create an abort controller to manage timeouts
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
         const response = await fetch(fetchUrl, { signal: controller.signal });
-        clearTimeout(timeoutId);  // Clear timeout if fetch succeeds
+        clearTimeout(timeoutId); // Clear timeout if fetch succeeds
 
         if (!response.ok) {
           // Handle HTTP status codes
           switch (response.status) {
             case 400:
-              throw new Error("Bad request. Please check your search parameters.");
+              throw new Error(
+                "Bad request. Please check your search parameters."
+              );
             case 403:
-              throw new Error("API key is invalid or you have exceeded your quota.");
+              throw new Error(
+                "API key is invalid or you have exceeded your quota."
+              );
             case 404:
               throw new Error("No books found. Please try a different search.");
             case 500:
@@ -72,7 +76,8 @@ const useFetchBooks = (searchParams) => {
 
         let uniqueBooks = data.items.filter(
           (item, index, self) =>
-            index === self.findIndex((t) => t.volumeInfo.title === item.volumeInfo.title)
+            index ===
+            self.findIndex((t) => t.volumeInfo.title === item.volumeInfo.title)
         );
 
         if (searchParams.sortType === "newest") {
@@ -85,7 +90,6 @@ const useFetchBooks = (searchParams) => {
 
         setBooks(uniqueBooks);
         setSuccess(true);
-
       } catch (err) {
         if (err.name === "AbortError") {
           setError("Request timed out. Please try again.");
